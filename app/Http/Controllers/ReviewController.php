@@ -31,7 +31,7 @@ class ReviewController extends Controller
         $totalComments = ProductComment::where('product_id', $id)->count();
         $averageRating = ProductComment::where('product_id', $id)->avg('rating');
 
-        $comments = $query->latest()->paginate(5)->appends($request->query());
+        $comments = $query->latest()->paginate(10)->appends($request->query());
 
         return view('reviews.index', compact('product', 'comments', 'totalComments', 'averageRating'));
     }
